@@ -1,0 +1,17 @@
+version: "3"
+services:
+  front:
+    image: carros_facisa_front
+    ports:
+      - "3000:80"
+  back:
+    image: carros_facisa_back
+    environment:
+      - DATABASE_URL=mongodb://bd/carros
+      - SERVER_PORT=5000
+    ports:
+      - "5000:5000"
+  bd:
+    image: mongo
+    volumes:
+      - "/home/bruno/dev/db:/data/db"

@@ -1,24 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+import axios from 'axios';
+
+import Cabecalho from './Cabecalho';
+import ListaDeCarros from './ListaDeCarros';
+import Contador from './Contador';
+
+import { useEffect, useState } from 'react';
 
 function App() {
+  const [carros, setCarros] = useState([]);
+
+  useEffect(() => {
+    axios.get('http://localhost:5000/carros').then((response) => {
+      setCarros(response.data);
+    });
+
+  }, []);
+
+  // Esse componente é uma bagunça, ele mostra vários componentes
+  // diferentes desenvolvidos em sala de aula.
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Cabecalho/>
+      <ListaDeCarros carros={carros}/>
+      <hr/>
+      <Contador/>
+    </>
   );
 }
 
