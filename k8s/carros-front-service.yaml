@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: carros-front-service
+  labels:
+    name: carros-front-service
+    app: carros-facisa-app
+spec:
+  type: NodePort
+  ports:
+    - port: 80
+      targetPort: 80
+      nodePort: 30002
+  selector:
+    name: carros-front-pod
+    app: carros-facisa-app

@@ -10,7 +10,7 @@ function App() {
   const [carros, setCarros] = useState([]);
 
   useEffect(() => {
-    axios.get('http://localhost:5000/carros').then((response) => {
+    axios.get(`${process.env.REACT_APP_BACKEND_URL}/carros`).then((response) => {
       setCarros(response.data);
     });
 

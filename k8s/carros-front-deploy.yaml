@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: carros-front-deploy
+  labels:
+    name: carros-front-deploy
+    app: carros-facisa-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: carros-front-pod
+      app: carros-facisa-app
+  template:
+    metadata:
+      name: carros-front-pod
+      labels:
+        name: carros-front-pod
+        app: carros-facisa-app
+    spec:
+      containers:
+        - name: carros-facisa-front
+          image: brunogamacatao/carros_facisa_front:v3
+          ports: 
+            - containerPort: 80

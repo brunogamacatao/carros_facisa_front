@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: carros-back-deploy
+  labels:
+    name: carros-back-deploy
+    app: carros-facisa-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: carros-back-pod
+      app: carros-facisa-app
+  template:
+    metadata:
+      name: carros-back-pod
+      labels:
+        name: carros-back-pod
+        app: carros-facisa-app
+    spec:
+      containers:
+        - name: carros-facisa-back
+          image: brunogamacatao/carros_facisa_back:v3
+          ports: 
+            - containerPort: 8080
+          env:
+            - name: DATABASE_HOST
+              value: "db"
+            - name: DATABASE_NAME
+              value: "carros"
